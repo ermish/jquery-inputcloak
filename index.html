@@ -43,7 +43,7 @@
 	<script type="text/javascript" src="endlessScroll.js"></script>
     <script>
         $(document).ready(function(){
-            $('.thingsTab').endlessScroll().setup({
+            $('.thingsTab').endlessScroll().init({
                                                     pageStart  : 100,
                                                     pageSize   : 50,
                                                     smartScrolling : true,
@@ -51,7 +51,7 @@
                                                                  '<span style="font-weight: bold;">Loading More Things...</span></div>'
                                                   });
 
-            $('.stuffTab').endlessScroll().setup({
+            $('.stuffTab').endlessScroll().init({
                                                      pageSize       : 75,
                                                      customFunction : loadOtherStuff,
                                                      smartScrolling : false,
@@ -59,7 +59,7 @@
                                                                       '<span style="font-weight: bold;">Loading More Stuff...</span></div>'
                                                   }).scroll();
 
-            $('.ajaxTab').endlessScroll().setup({
+            $('.ajaxTab').endlessScroll().init({
                 pageSize       : 50,
                 smartScrolling : false,
                 /*url:"asdf",*/
