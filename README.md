@@ -2,8 +2,9 @@
 
 ## What is it?
 
-A simple plugin that masks an input, similar to a password box.
-Ex. 123-45-6789 becomes ***-**-****.
+A simple plugin that cloaks/masks an input, similar to a password box.
+
+Ex. 123-45-6789 becomes xxx-xx-6789.
 
 ## How do I use it?
 
