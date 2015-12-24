@@ -14,11 +14,11 @@ Select DOM elements and apply cloaking to them, with default settings or tailore
 ```javascript
 $('.yourpasswordinput').inputCloak();
 ```
-OR
+or
 ```javascript
-$('.yourpasswordinput').inputCloak({settings});
+$('.yourpasswordinput').inputCloak(settings);
 ```
-where settings is an object with as many as relevant of the following members:
+where settings is an object with any of the following members:
 \(default is shown first\)
 
  type: 'all' \('ssn','credit','see4','see1' or 'all'
@@ -38,7 +38,7 @@ where settings is an object with as many as relevant of the following members:
 ```
   \)
 
-Head on over to [here](http://ermish.github.io/jquery-inputcloak) for examples.
+Head on over [here](http://ermish.github.io/jquery-inputcloak) for examples.
 
 ## API
 
