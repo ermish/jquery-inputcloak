@@ -22,9 +22,9 @@ where settings is an object with as many as relevant of the following members:
 \(default is shown first\)
 
  type: 'all' \('ssn','credit' or 'all'
-   for display respectively like ***-**-1234,*1234 or ****,
+   for display respectively like \*\*\*-\*\*-1234,\*1234 or \*\*\*\*,
    irrelevant if customCloak is used\)<br />
- symbol: '\*' \(any single-char e.g. '*',\u2022 \(dot\), 'x'\)<br />
+ symbol: '\*' \(any single-char e.g. '\*',\u2022 \(dot\), 'x'\)<br />
  delay: 0 \(mSec delay between blur event and cloak-application\)<br />
  revealOnFocus: true \(or false\)<br />
  cloakOnBlur: true \(or false\)<br />
