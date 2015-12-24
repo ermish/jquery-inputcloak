@@ -28,9 +28,9 @@ where settings is an object with as many as relevant of the following members:
  delay: 0 \(mSec delay between blur event and cloak-application\)<br />
  revealOnFocus: true \(or false\)<br />
  cloakOnBlur: true \(or false\)<br />
- customCloak : undefined \(or name of callback, as
+ customCloak : undefined \(or name of callback function, which is like
 ```javascript
-   callback(value, $element, $cloakedElement) {
+   function mycloaker(value, $element, $cloakedElement) {
      var cloakedValue = something_derived_from(value);
      $cloakedElement.val(cloakedValue);
      $element.val(value);
