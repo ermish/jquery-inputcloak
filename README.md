@@ -31,14 +31,14 @@ where settings is an object with as many as relevant of the following members:
  customCloak : undefined \(or name of callback, as
 ```javascript
    callback(value, $element, $cloakedElement) {
-     determine cloakedValue from value
+     var cloakedValue = something_derived_from(value);
      $cloakedElement.val(cloakedValue);
      $element.val(value);
    }
 ```
   \)
 
-Head on over to [github](http://ermish.github.io/jquery-inputcloak) for examples.
+Head on over to [here](http://ermish.github.io/jquery-inputcloak) for examples.
 
 ## API
 
