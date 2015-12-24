@@ -11,22 +11,24 @@ Ex. 123-45-6789 becomes xxx-xx-6789.
 Include relevant js files - jQuery and jquery.inputcloak.min.js
 
 Select page elements and apply cloaking to them, with default settings or customised ones, like
-
-$('.yourpasswordinput').inputCloak();<br />
-OR<br />
+```javascript
+$('.yourpasswordinput').inputCloak();
+```
+OR
+```javascript
 $('.yourpasswordinput').inputCloak({settings});
-
+```
 where settings is an object with as many as relevant of the following members:
-(default is shown first)
+\(default is shown first\)
 
- type: 'all' ('ssn','credit' or 'all'
+ type: 'all' \('ssn','credit' or 'all'
    for display respectively like ***-**-1234,*1234 or ****,
-   irrelevant if customCloak is used)<br />
- symbol: \*' (any single-char e.g. '*',\u2022 (dot), 'x')<br />
- delay: 0 (mSec delay between blur event and cloak-application)<br />
- revealOnFocus: true (or false)<br />
- cloakOnBlur: true (or false)<br />
- customCloak : undefined (or name of callback, as
+   irrelevant if customCloak is used\)<br />
+ symbol: '\*' \(any single-char e.g. '*',\u2022 \(dot\), 'x'\)<br />
+ delay: 0 \(mSec delay between blur event and cloak-application\)<br />
+ revealOnFocus: true \(or false\)<br />
+ cloakOnBlur: true \(or false\)<br />
+ customCloak : undefined \(or name of callback, as
 ```javascript
    callback(value, $element, $cloakedElement) {
      determine cloakedValue from value
@@ -34,7 +36,7 @@ where settings is an object with as many as relevant of the following members:
      $element.val(value);
    }
 ```
-  )
+  \)
 
 Head on over to [github](http://ermish.github.io/jquery-inputcloak) for examples.
 
