@@ -2,13 +2,18 @@
 inputCloak
 version 12/7/2015 + mods
 by Philip Ermish
-license: GNU General Public License v.3 or later
+license: Apache 2 or GNU General Public License v.3 or later
 */
 /*
+Assumes one-byte-encoded characters in the password
+
 Settings (default is shown first)
-type: 'all' ('ssn','credit' or 'all'
-  for display like ***-**-1234,*1234 or ****,
-  irrelevant if customCloak is used)
+type: 'all' ('ssn' shows ***-**-1234,
+ 'credit' shows *1234
+ 'see4' shows last 4 chars ******1234
+ 'see1' shows last 1 char ******4 
+ 'all' shows none *******,
+ irrelevant if customCloak is used)
 symbol : '*' (any single-char e.g. '*',\u2022 (dot), 'x')
 delay: 0 (mSec delay between blur event and cloak-application)
 revealOnFocus: true (or false)
@@ -20,6 +25,15 @@ customCloak : undefined (or name of callback, as
     $element.val(value);
   }
   )
+
+API
+properties added to each selected element
+.settings = object containing default parameters as modified by initiating application
+._defaults = object containing default parameters
+._name = constant name of this plugin
+methods added to each selected element
+.cloak(value)
+.reveal()
 */
 
 (function($) {
@@ -57,9 +71,19 @@ customCloak : undefined (or name of callback, as
                 switch($element.settings.type.toLowerCase()){
                     case 'ssn':
                         if(len > 4) {
-                            cloakedValue = Array(3 + 1).join(symbol) + '-' +
-                                           Array(2 + 1).join(symbol) + '-' +
-                                           value.substr(len-4, 4); //***-**-1234
+                            var first = value.substr(0, len-4),
+                                flen = first.length;
+                            if(flen < 3) {
+                                cloakedValue = Array(flen + 1).join(symbol);
+                            } else {
+                                cloakedValue = Array(3 + 1).join(symbol) + '-';
+                                if(flen >= 5) {
+                                    cloakedValue += Array(2 + 1).join(symbol) + '-';
+                                } else {
+                                    cloakedValue += Array(flen - 3 + 1).join(symbol);
+                                }
+                            }
+                            cloakedValue += value.substr(len-4, 4);//***-**-1234
                         } else {
                             cloakedValue = value; //wacker didn't finish
                         }
@@ -68,7 +92,21 @@ customCloak : undefined (or name of callback, as
                         if(len > 4) {
                             cloakedValue = symbol + value.substr(len-4, 4);//*1234
                         } else {
-                            cloakedValue = value; //not finished
+                            cloakedValue = value;
+                        }
+                        break;
+                    case 'see4':
+                        if(len > 4) {
+                            cloakedValue = Array(len - 4 + 1).join(symbol) + value.substr(len-4,4);//****1234
+                        } else {
+                            cloakedValue = value;
+                        }
+                        break;
+                    case 'see1':
+                        if(len > 1) {
+                            cloakedValue = Array(len).join(symbol) + value.substr(len-1,1);//****4
+                        } else {
+                            cloakedValue = '';
                         }
                         break;
                     default:
