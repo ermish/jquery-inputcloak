@@ -22,16 +22,18 @@ where settings is an object with as many as relevant of the following members:
  type: 'all' ('ssn','credit' or 'all'
    for display like ***-**-1234,*1234 or ****,
    irrelevant if customCloak is used)<br />
- symbol: '*' (any single-char e.g. '*',\u2022 (dot), 'x')<br />
+ symbol: '\*' (any single-char e.g. '*',\u2022 (dot), 'x')<br />
  delay: 0 (mSec delay between blur event and cloak-application)<br />
  revealOnFocus: true (or false)<br />
  cloakOnBlur: true (or false)<br />
  customCloak : undefined (or name of callback, as<br />
-  callback(value, $element, $cloakedElement) {<br />
-    determine cloakedValue from value<br />
-    $cloakedElement.val(cloakedValue);<br />
-    $element.val(value);<br />
-  }<br />
+```javascript
+   callback(value, $element, $cloakedElement) {
+     determine cloakedValue from value
+     $cloakedElement.val(cloakedValue);
+     $element.val(value);
+   }
+```
   )
 
 Head on over to [github](http://ermish.github.io/jquery-inputcloak) for examples.
