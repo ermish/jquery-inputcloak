@@ -75,7 +75,7 @@
 
             //////Private Methods
             var init = function(){
-                if($element.hasClass('cloaked')){
+                if($element.attr('data-cloaked-id')){
                     return;
                 }
 
@@ -96,9 +96,11 @@
             };
 
             var createCloakedElement = function(){
-                $element.addClass('cloaked');
+                var newDataId = Math.floor((Math.random() * 100000000) + 1);
+                $element.attr('data-cloaked-id', newDataId);
                 $cloakedElement = $element.clone();
-                $cloakedElement.attr('id','cloaked-' + $element.attr('id'));
+
+                $cloakedElement.attr('data-cloaked-for', newDataId);
                 $cloakedElement.removeAttr('name');
 
                 $element.css( 'display', 'none' );

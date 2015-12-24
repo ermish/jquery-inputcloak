@@ -28,11 +28,14 @@
                     transform: [
                        ["babelify", {
                            loose: "all",
-                           "sourceMap": true,
                            "experimental": true,
                            "modules": "ignore"//"common"
                        }]
-                    ]
+                    ],
+
+                    browserifyOptions : {
+                        debug: true
+                    }
                 }
             },
             files: {
@@ -41,11 +44,15 @@
                 "src": ["**/*.es6.js"],
                 "dest": "dist",
                 "ext": ".js"
-            }
+            },
+
         },
         uglify: {
             options: {
-                banner: '/*! * Copyright (c) 2010 - <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n> */ '
+                banner: '/*! * Copyright (c) 2010 - <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n> */ ',
+                sourceMap : true,
+                sourceMapIncludeSources : true
+
             },
             build: {
                 src: 'dist/' + bundleName + '.js',
