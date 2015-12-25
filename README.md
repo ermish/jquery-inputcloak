@@ -8,37 +8,60 @@ Ex. 123-45-6789 becomes xxx-xx-6789.
 
 ## How do I use it?
 
-Include relevant js files - jQuery and jquery.inputcloak.min.js
+### Include js files: 
+* jQuery 
+* jquery-inputCloak.min.js
 
-Select page elements and apply cloaking to them, with default settings or customised ones, like
+### Select any element and cloak them!
 ```javascript
 $('.yourpasswordinput').inputCloak();
 ```
-OR
-```javascript
-$('.yourpasswordinput').inputCloak({settings});
-```
-where settings is an object with as many as relevant of the following members:
-\(default is shown first\)
 
- type: 'all' \('ssn','credit' or 'all'
-   for display respectively like \*\*\*-\*\*-1234,\*1234 or \*\*\*\*,
-   irrelevant if customCloak is used\)<br />
- symbol: '\*' \(any single-char e.g. '\*',\u2022 \(dot\), 'x'\)<br />
- delay: 0 \(mSec delay between blur event and cloak-application\)<br />
- revealOnFocus: true \(or false\)<br />
- cloakOnBlur: true \(or false\)<br />
- customCloak : undefined \(or name of callback, as
-```javascript
-   callback(value, $element, $cloakedElement) {
-     determine cloakedValue from value
-     $cloakedElement.val(cloakedValue);
-     $element.val(value);
-   }
-```
-  \)
+## Examples
 
-Head on over to [github](http://ermish.github.io/jquery-inputcloak) for examples.
+Several options are available including pre-defined input types: 
+
+```javascript
+$('.yourpasswordinput').inputCloak({
+   type: 'ssn',
+   delay : 1000,
+   symbol : '*'
+});
+```
+
+You can also define a custom cloak method callback:
+```javascript
+function getFromServer(value, $element, $cloakedElement){
+   var customMaskValue = $.ajax({
+    //get mask
+   });
+    $cloakedElement.val(cloakedValue);
+    $element.val(value);
+}
+
+$('.yourpasswordinput').inputCloak({
+   customCloak : getFromServer
+});
+```
+
+### Need more examples?
+
+Head on over to [ermish.github.io/jquery-inputcloak](http://ermish.github.io/jquery-inputcloak).
+
+
+
+
+## Available Settings
+
+| Setting | Options | Description |
+| ------- | ----- | ----------- |
+| type       | 'ssn','credit' or 'all'      | Default: 'ssn'. for display respectively like \*\*\*-\*\*-1234,\*1234 or \*\*\*\*,
+|            |                              | irrelevant if customCloak is used|   
+| symbol  | any single-char e.g. '\*',\u2022 \(dot\), 'x'\  | Default: 0. Type of cloak symbol |   
+| delay     | Integer  | Default: 0. mSec delay between blur event and cloak-application | 
+| revealOnFocus     | Boolean        | Default: true.  | 
+| cloakOnBlur    | Boolean        | Default: true |   
+| customCloak    | Function        | Default: undefined. Parameters are value, $element, $cloakedElement. This is called from cloakOnBlur. [example](##Examples)  |    
 
 ##  Copyright and Licensing
 
