@@ -2,7 +2,7 @@
 inputCloak
 version 12/7/2015 + mods
 by Philip Ermish
-license: Apache 2 or GNU General Public License v.3 or later
+license: Apache v.2 or GNU General Public License v.3 or later
 */
 /*
 Assumes one-byte-encoded characters in the password
@@ -36,7 +36,7 @@ methods added to each selected element
 .reveal()
 */
 
-(function($) {
+(function($) { "$:nomunge";
     $.fn.inputCloak = function(userSettings) {
         return this.each(function() {
             //////private variables
