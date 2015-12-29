@@ -1,6 +1,6 @@
 /*!
 inputCloak
-version 12/7/2015 + mods
+version 30/12/2015
 by Philip Ermish
 license: Apache v.2 or GNU General Public License v.3 or later
 */
@@ -14,15 +14,14 @@ type: 'all' ('ssn' shows ***-**-1234,
  'see1' shows last 1 char ******4 
  'all' shows none *******,
  irrelevant if customCloak is used)
-symbol : '*' (any single-char e.g. '*',\u2022 (dot), 'x')
+symbol: '*' (any single-char e.g. '*',\u2022 (dot), 'x')
 delay: 0 (mSec delay between blur event and cloak-application)
 revealOnFocus: true (or false)
 cloakOnBlur: true (or false)
-customCloak : undefined (or name of callback, as
+customCloak: undefined (or name of callback, as
   callback(value, $element, $cloakedElement) {
-    determine cloakedValue from value
+    var cloakedValue = func(value);
     $cloakedElement.val(cloakedValue);
-    $element.val(value);
   }
   )
 
@@ -36,7 +35,8 @@ methods added to each selected element
 .reveal()
 */
 
-(function($) { "$:nomunge";
+(function($) {
+"$:nomunge"; //yuicompressor directive
     $.fn.inputCloak = function(userSettings) {
         return this.each(function() {
             //////private variables
@@ -61,6 +61,7 @@ methods added to each selected element
             $element.cloak = function(value) {
                 if($element.settings.customCloak){
                     $element.settings.customCloak(value, $element, $cloakedElement);
+                    $element.val(value);
                     return true;
                 }
     
