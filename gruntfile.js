@@ -1,21 +1,24 @@
 ﻿module.exports = function (grunt) {
     'use strict';
 
+    var bundleName = "jquery-inputcloak";
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        clean: ["dist"],
         babel: {
             "options": {
-                "sourceMap": false,
+                "sourceMap": true,
                 "experimental": true,
                 "modules": "ignore"//"common"
             },
             dist: {
                 files: [{
                     "expand": true,
-                    "cwd": "components",
+                    "cwd": "src",
                     "src": ["**/*.es6.js"],
-                    "dest": "components",
-                    "ext": ".js"
+                    "dest": "dist",
+                    "ext": "last"
                 }]
             }
         },
@@ -24,29 +27,49 @@
                 options: {
                     transform: [
                        ["babelify", {
-                           loose: "all"
+                           loose: "all",
+                           "experimental": true,
+                           "modules": "ignore"//"common"
                        }]
-                    ]
+                    ],
+
+                    browserifyOptions : {
+                        debug: true
+                    }
                 }
             },
-            js: {
-                //TODO: make has work
-                src: 'karma.conf.js',
-                dest: 'bin/components/bundle.js'
+            files: {
+                "expand": true,
+                "cwd": "src",
+                "src": ["**/*.es6.js"],
+                "dest": "dist",
+                "ext": ".js"
+            },
+
+        },
+        uglify: {
+            options: {
+                banner: '/*! * Copyright (c) 2010 - <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n> */ ',
+                sourceMap : true,
+                sourceMapIncludeSources : true
+
+            },
+            build: {
+                src: 'dist/' + bundleName + '.js',
+                dest: 'dist/' + bundleName + '.min.js'
             }
         },
         watch: {
             js: {
                 files: ["components/**/*.js"],
-                tasks: ['newer:babel', 'newer:browserify']
+                tasks: ['newer:babel', 'browserify']
             }
         }
 });
 
-    grunt.loadNpmTasks('grunt-babel');
-    grunt.loadNpmTasks("grunt-contrib-watch");
-    grunt.loadNpmTasks('grunt-newer');
+    // Load the plugin that provides the tasks.
+    require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('dev', ['watch:js']);
-    grunt.registerTask('prod', ['babel', 'browserify']);
+    grunt.registerTask('default', ['clean', 'browserify']);
+    grunt.registerTask('build', [ 'uglify']);
 }
