@@ -26,9 +26,8 @@ where settings is an object with any of the following members:
 
 | Name | Options | Description |
 | ------- | ----- | ----------- |
-| type       | 'ssn','credit','see4','see1' or 'all'      | Default: 'ssn'. for display respectively like \*\*\*-\*\*-1234,\*1234,\*\*\*\*1234,\*\*\*\*4 or \*\*\*\*,|
-|            |                                            | irrelevant if customCloak is used |
-| symbol     | any single-char e.g. '\*',\u2022 \(dot\), 'x'\  | Default: '\*'. Type of cloak symbol |
+| type       | String 'ssn','credit','see4','see1' or 'all'      | Default: 'ssn'. for display respectively like \*\*\*-\*\*-1234,\*1234,\*\*\*\*1234,\*\*\*\*4 or \*\*\*\*, irrelevant if customCloak is used |
+| symbol     | any single-char e.g. '\*',\u2022 \(dot\), 'x'  | Default: '\*'. Type of cloak symbol |
 | delay      | Integer  | Default: 0. mSec delay between blur event and cloak-application |
 | revealOnFocus  | Boolean        | Default: true.  |
 | cloakOnBlur    | Boolean        | Default: true.  |
