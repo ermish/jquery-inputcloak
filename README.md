@@ -1,4 +1,4 @@
-# jquery-inputcloak
+# jquery-inputCloak
 
 ## What is it?
 
@@ -8,36 +8,43 @@ e.g. 123-45-6789 becomes xxx-xx-6789.
 
 ## How do I use it?
 
-Include relevant js files - jQuery and jquery.inputcloak.min.js
+### Include js files:
+* jQuery
+* jquery-inputCloak.min.js
 
-Select DOM elements and apply cloaking to them, with default settings or tailored ones, like
+### Select DOM elements and apply cloaking to them
+
+with default settings
 ```javascript
 $('.yourpasswordinput').inputCloak();
 ```
-or
+or with tailored settings, like
 ```javascript
 $('.yourpasswordinput').inputCloak(settings);
 ```
 where settings is an object with any of the following members:
-\(default is shown first\)
 
- type: 'all' \('ssn','credit','see4','see1' or 'all'
-   for display respectively like \*\*\*-\*\*-1234,\*1234,\*\*\*\*1234,\*\*\*\*4 or \*\*\*\*,
-   irrelevant if customCloak is used\)<br />
- symbol: '\*' \(any single-char e.g. '\*',\u2022 \(dot\), 'x'\)<br />
- delay: 0 \(mSec delay between blur event and cloak-application\)<br />
- revealOnFocus: true \(or false\)<br />
- cloakOnBlur: true \(or false\)<br />
- customCloak: undefined \(or name of callback function, which is like
+| Name | Options | Description |
+| ------- | ----- | ----------- |
+| type       | 'ssn','credit','see4','see1' or 'all'      | Default: 'ssn'. for display respectively like \*\*\*-\*\*-1234,\*1234,\*\*\*\*1234,\*\*\*\*4 or \*\*\*\*,|
+|            |                                            | irrelevant if customCloak is used |
+| symbol     | any single-char e.g. '\*',\u2022 \(dot\), 'x'\  | Default: '\*'. Type of cloak symbol |
+| delay      | Integer  | Default: 0. mSec delay between blur event and cloak-application |
+| revealOnFocus  | Boolean        | Default: true.  |
+| cloakOnBlur    | Boolean        | Default: true.  |
+| customCloak    | Function       | Default: undefined. Parameters are value, $element, $cloakedElement. This is called from cloakOnBlur. |
+
+An example customCloak callback is
 ```javascript
    function mycloaker(value, $element, $cloakedElement) {
-     var cloakedValue = something_derived_from(value);
-     $cloakedElement.val(cloakedValue);
+     var customMaskValue = some_string_derived_from(value);
+     $cloakedElement.val(customMaskValue);
    }
 ```
-  \)
 
-Head on over [here](http://ermish.github.io/jquery-inputcloak) for examples.
+### Need more examples?
+
+Head on over [here](http://ermish.github.io/jquery-inputcloak).
 
 ## API
 
