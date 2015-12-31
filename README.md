@@ -31,7 +31,7 @@ where settings is an object with any of the following members:
 | delay      | Integer  | Default: 0. mSec delay between blur event and cloak-application |
 | revealOnFocus  | Boolean        | Default: true.  |
 | cloakOnBlur    | Boolean        | Default: true.  |
-| customCloak    | Function       | Default: undefined. Parameters are value, $element, $cloakedElement. This is called from cloakOnBlur. |
+| customCloak    | Function       | Default: undefined. Called from blur-event handler, with parameters value, $element, $cloakedElement.  |
 
 An example customCloak callback is
 ```javascript
@@ -40,7 +40,6 @@ An example customCloak callback is
      $cloakedElement.val(customMaskValue);
    }
 ```
-
 ### Need more examples?
 
 Head on over [here](http://ermish.github.io/jquery-inputcloak).
