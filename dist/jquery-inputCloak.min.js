@@ -1,6 +1,6 @@
 /*!
 inputCloak
-version 30/12/2015
+version 0.1.0
 by Philip Ermish
 license: Apache v.2 or GNU General Public License v.3 or later
 */
