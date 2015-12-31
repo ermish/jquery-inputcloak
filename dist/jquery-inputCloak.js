@@ -62,7 +62,7 @@ methods added to each selected element
                 if($element.settings.customCloak){
                     $element.settings.customCloak(value, $element, $cloakedElement);
                     $element.val(value);
-                    return true;
+                    return this; //So jquery chaining will still work
                 }
     
                 var symbol = $element.settings.symbol,
@@ -86,14 +86,14 @@ methods added to each selected element
                             }
                             cloakedValue += value.substr(len-4, 4);//***-**-1234
                         } else {
-                            cloakedValue = value; //wacker didn't finish
+                            cloakedValue = value; //user hasn't finished
                         }
                         break;
                     case 'credit':
                         if(len > 4) {
                             cloakedValue = symbol + value.substr(len-4, 4);//*1234
                         } else {
-                            cloakedValue = value;
+                            cloakedValue = value; //user hasn't finished
                         }
                         break;
                     case 'see4':
@@ -130,6 +130,10 @@ methods added to each selected element
     
             //////Private Methods
             var init = function(){
+                if($element.attr('data-cloaked-id')){
+                    return;
+                }
+
                 createCloakedElement($element);
     
                 $cloakedElement.on('focus', function(e){
@@ -146,9 +150,10 @@ methods added to each selected element
             };
     
             var createCloakedElement = function(){
-                var cloakedId = 'cloaked' + Math.floor((Math.random() * 100000000) + 1);
+                var newDataId = Math.floor((Math.random() * 100000000) + 1);
+                $element.attr('data-cloaked-id', newDataId);
                 $cloakedElement = $element.clone();
-                $cloakedElement.attr('id','#' + cloakedId);
+                $cloakedElement.attr('data-cloaked-for', newDataId);
                 $cloakedElement.removeAttr('name');
     
                 $element.css( 'display', 'none' );
