@@ -14,7 +14,7 @@ type: 'all' ('ssn' shows ***-**-1234,
  'see1' shows last 1 char ******4 
  'all' shows none *******,
  irrelevant if customCloak is used)
-symbol: '*' (any single-char e.g. '*',\u2022 (dot), 'x')
+symbol: '*' (any single-char e.g. '*','\u25CF'(bigdot),'\u2022'(dot),'x')
 delay: 0 (mSec delay between blur event and cloak-application)
 revealOnFocus: true (or false)
 cloakOnBlur: true (or false)
@@ -45,7 +45,7 @@ methods added to each selected element
     
             var defaults = {
                 type: 'all', //ssn, credit, all
-                symbol : '*', //Options: *, \u2022 (dot), x
+                symbol : '*', //Options: e.g. *, \u25CF (bigdot), \u2022 (dot), x
                 delay: 0,
                 revealOnFocus: true,
                 cloakOnBlur: true,
@@ -162,7 +162,7 @@ methods added to each selected element
     
             init();
     
-            return this;  //So jquery chaining will still work
+            return this;  //So jquery chaining will work
         });
     };
 })(jQuery);
