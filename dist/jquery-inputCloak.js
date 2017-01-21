@@ -1,6 +1,6 @@
 /*!
 inputCloak
-version 0.1.0
+version 0.1.1
 by Philip Ermish
 license: Apache v.2 or GNU General Public License v.3 or later
 */
@@ -14,7 +14,7 @@ type: 'all' ('ssn' shows ***-**-1234,
  'see1' shows last 1 char ******4 
  'all' shows none *******,
  irrelevant if customCloak is used)
-symbol: '*' (any single-char e.g. '*',\u2022 (dot), 'x')
+symbol: '*' (any single-char e.g. '*','\u25CF'(bigdot),'\u2022'(dot),'x')
 delay: 0 (mSec delay between blur event and cloak-application)
 revealOnFocus: true (or false)
 cloakOnBlur: true (or false)
@@ -45,7 +45,7 @@ methods added to each selected element
     
             var defaults = {
                 type: 'all', //ssn, credit, all
-                symbol : '*', //Options: *, \u2022 (dot), x
+                symbol : '*', //Options: e.g. *, \u25CF (bigdot), \u2022 (dot), x
                 delay: 0,
                 revealOnFocus: true,
                 cloakOnBlur: true,
@@ -151,18 +151,19 @@ methods added to each selected element
     
             var createCloakedElement = function(){
                 var newDataId = Math.floor((Math.random() * 100000000) + 1);
-                $element.attr('data-cloaked-id', newDataId);
                 $cloakedElement = $element.clone();
-                $cloakedElement.attr('data-cloaked-for', newDataId);
-                $cloakedElement.removeAttr('name');
+                $cloakedElement.removeAttr('name')
+                .attr('data-cloaked-for', newDataId);
     
-                $element.css( 'display', 'none' );
-                $element.after($cloakedElement);
+                $element.css('display', 'none')
+                .removeAttr('id')
+                .attr('data-cloaked-id', newDataId)
+                .after($cloakedElement);
             };
     
             init();
     
-            return this;  //So jquery chaining will still work
+            return this;  //So jquery chaining will work
         });
     };
 })(jQuery);
